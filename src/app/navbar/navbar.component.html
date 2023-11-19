@@ -1,0 +1,58 @@
+<ng-template #content let-offcanvas>
+  <div class="offcanvas-header">
+    <h4 class="offcanvas-title">Menu</h4>
+    <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+  </div>
+  <div class="offcanvas-body">
+    <div *ngIf="user==null"  ngbDropdown class="d-block">
+      <button type="button"
+      class="btn btn-outline-none"
+      (click)="isCollapsedSignin = ! isCollapsedSignin"
+      [attr.aria-expanded]="!isCollapsedSignin"
+      aria-controls="collapseExample">
+        SignUp
+      </button>
+      <div #collapse="ngbCollapse" class="ms-3 text-secondary" [(ngbCollapse)]="isCollapsedSignin">
+        <a [routerLink]="['Signup','Manager']" ngbDropdownItem>Manager</a>
+        <a [routerLink]="['Signup','Admin']" ngbDropdownItem>Hr Admin</a>
+      </div>
+    </div>
+    <div *ngIf="user==null" ngbDropdown class="d-block">
+      <button type="button"
+      class="btn btn-outline-none"
+      (click)="isCollapsedSignup = ! isCollapsedSignup"
+      [attr.aria-expanded]="!isCollapsedSignup"
+      aria-controls="collapseExample">
+        SignIn
+      </button>
+      <div  #collapse="ngbCollapse" class="ms-3 text-secondary" [(ngbCollapse)]="isCollapsedSignup">
+        <a [routerLink]="['Signin','Employee']" ngbDropdownItem>Employee</a>
+        <a [routerLink]="['Signin','Manager']" ngbDropdownItem>Manager</a>
+        <a [routerLink]="['Signin','Admin']" ngbDropdownItem>Manager</a>
+        <a [routerLink]="['Signin','Super']" ngbDropdownItem>Super Admin</a>
+      </div>
+    </div>
+    <div class="d-flex flex-column justify-content-start">
+    <a  type="button" *ngIf='user!=null && role==="employee"' class="btn btn-outline-none ms-3" routerLink="/Employee/Attendance">Attendance</a>
+    <a  type="button" *ngIf='user!=null && role==="employee"' class="btn btn-outline-none ms-3" routerLink="/Employee/Profile">Profile</a>
+    <a  type="button" *ngIf='user!=null && role==="employee" && user.onboarded === false' class="btn btn-outline-none ms-3" routerLink="/Employee/Onboarding">Onboarding</a>
+    <a  type="button" *ngIf='user!=null && role==="manager"' class="btn btn-outline-none ms-3" routerLink="/Manager/CreateJob">Jobs</a>
+    <a type="button" routerLink="/" class=" btn btn-outline-none" *ngIf="user!=null " (click)="logout()">Logout</a>
+    </div>
+  </div>
+  
+  
+</ng-template>
+
+<nav class="navbar bg-body-tertiary">
+  <div class="container-fluid d-flex justify-content-start align-items-center">
+    <button class="btn btn btn-outline-dark mb-2 me-2" (click)="openCustomBackdropClass(content)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-list"
+        viewBox="0 0 16 16">
+        <path fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z" />
+      </svg>
+    </button>
+    <a class="navbar-brand fw-bold mx-3 fs-3" href="#"> HRFlow </a>
+  </div>
+</nav>

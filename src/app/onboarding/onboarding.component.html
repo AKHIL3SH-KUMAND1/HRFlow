@@ -1,0 +1,88 @@
+<mat-stepper [linear]=true #stepper>
+  <mat-step orientation="vertical" [stepControl]="firstFormGroup">
+    <form class="container" [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>"Yes" if you agree to the below conditions</ng-template>
+      <div class="container-fluid">
+        <h1>Company Policies and Rules</h1>
+
+        <h2>1. Code of Conduct</h2>
+        <p>All employees are expected to adhere to a high standard of professionalism, ethical behavior, and integrity.
+          Treat colleagues, clients, and partners with respect and courtesy.</p>
+
+        <h2>2. Attendance and Punctuality</h2>
+        <p>Employees are required to arrive on time for work and notify their supervisor in case of any planned absence.
+          Consistent tardiness and absenteeism may result in disciplinary actions.</p>
+
+        <h2>3. Confidentiality</h2>
+        <p>Protecting sensitive company information is crucial. Employees must maintain the confidentiality of
+          proprietary information, trade secrets, and any other classified data.</p>
+
+        <h2>4. Equal Opportunity</h2>
+        <p>The company is committed to providing equal employment opportunities to all employees and applicants.
+          Discrimination based on race, color, religion, sex, national origin, age, or disability is strictly
+          prohibited.</p>
+
+        <h2>5. Health and Safety</h2>
+        <p>Employees are responsible for maintaining a safe and healthy work environment. Follow safety protocols,
+          report hazards, and participate in training programs to prevent accidents and injuries.</p>
+
+        <h2>6. Use of Company Resources</h2>
+        <p>Company resources, including computers, internet access, and other equipment, should be used for work-related
+          purposes. Unauthorized personal use may result in disciplinary action.</p>
+
+        <h2>7. Social Media Usage</h2>
+        <p>Exercise caution when using social media. Avoid sharing confidential company information or making
+          disparaging remarks about the company, colleagues, or clients on public platforms.</p>
+
+        <h2>8. Reporting Violations</h2>
+        <p>If you become aware of any violation of company policies or witness unethical behavior, report it promptly to
+          your supervisor, HR, or use the designated reporting channels.</p>
+
+        <h2>9. Disciplinary Actions</h2>
+        <p>Violations of company policies may result in disciplinary actions, including verbal or written warnings,
+          suspension, or termination of employment, depending on the severity and recurrence of the offense.</p>
+
+        <p>These policies are subject to change, and employees are encouraged to review and acknowledge updates
+          regularly.</p>
+
+        <p>By continuing employment with CHUBB, you agree to abide by these policies and rules.</p>
+      </div>
+      <mat-form-field class="me-auto">
+        <mat-label>Yes</mat-label>
+        <input matInput placeholder="Type Yes to continue" formControlName="firstCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button [disabled]="firstFormGroup.value.firstCtrl!=='Yes'" matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step [stepControl]="secondFormGroup" label="Go through this video">
+    <form class="container" [formGroup]="secondFormGroup">
+      <div class="container">
+        <h1>POSH in the workplace</h1>
+        <iframe width="70%" height="400" src="https://www.youtube.com/embed/zG9NZfKOloA">
+        </iframe>
+      </div>
+      <mat-form-field class="mt-4">
+        <mat-label>Understod?</mat-label>
+        <input matInput formControlName="secondCtrl" placeholder="Yes or No" required>
+      </mat-form-field>
+      <div>
+        <button  mat-button matStepperPrevious>Back</button>
+        <button [disabled]="secondFormGroup.value.secondCtrl!=='Yes'" mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+
+
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p class="display-6">Great! You are ready and done</p>
+    <div class="d-flex justify-content-center align-items-center">
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()" (click)="onboardEmployee()" routerLink="/Employee/Profile">Done</button>
+    </div>
+  </mat-step>
+</mat-stepper>
