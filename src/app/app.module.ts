@@ -20,6 +20,11 @@ import { OnboardingComponent } from './onboarding/onboarding.component';
 import { CreateJobComponent } from './create-job/create-job.component';
 import { ViewEmployeesComponent } from './view-employees/view-employees.component';
 import { AddApplicantToJobDialogComponent } from './add-applicant-to-job-dialog/add-applicant-to-job-dialog.component';
+import { ApproveUserDialogComponent } from './approve-user-dialog/approve-user-dialog.component';
+import { AttendanceViewerDialogComponent } from './attendance-viewer-dialog/attendance-viewer-dialog.component';
+import { ManagerProfileComponent } from './manager-profile/manager-profile.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { ViewManagersComponent } from './view-managers/view-managers.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +40,11 @@ import { AddApplicantToJobDialogComponent } from './add-applicant-to-job-dialog/
     CreateJobComponent,
     ViewEmployeesComponent,
     AddApplicantToJobDialogComponent,
+    ApproveUserDialogComponent,
+    AttendanceViewerDialogComponent,
+    ManagerProfileComponent,
+    AdminProfileComponent,
+    ViewManagersComponent,
   ],
   imports: [
     BrowserModule,

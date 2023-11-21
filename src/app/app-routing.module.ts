@@ -9,6 +9,10 @@ import { EmployeeProfileComponent } from './employee-profile/employee-profile.co
 import { OnboardingComponent } from './onboarding/onboarding.component';
 import { CreateJobComponent } from './create-job/create-job.component';
 import { ManagerGuardService } from 'src/shared/services/manager-guard.service';
+import { ViewEmployeesComponent } from './view-employees/view-employees.component';
+import { ManagerProfileComponent } from './manager-profile/manager-profile.component';
+import { AdminProfileComponent } from './admin-profile/admin-profile.component';
+import { AdminGuardService } from 'src/shared/services/admin-guard.service';
 
 const routes: Routes = [
   {
@@ -42,7 +46,29 @@ const routes: Routes = [
     path:"Manager/CreateJob",
     component:CreateJobComponent,
     canActivate:[ManagerGuardService]
-  }
+  },
+  {
+    path:"Manager/Employees",
+    component:ViewEmployeesComponent,
+    canActivate:[ManagerGuardService]
+  },
+  {
+    path:"Manager/Profile",
+    component:ManagerProfileComponent,
+    canActivate:[ManagerGuardService]
+  },
+  {
+    path:"Admin/Profile",
+    component:AdminProfileComponent,
+    canActivate:[AdminGuardService]
+  },
+  {
+    path:"Admin/Employees",
+    component:ViewEmployeesComponent,
+    canActivate:[AdminGuardService]
+  },
+  
+
 ];
 
 @NgModule({

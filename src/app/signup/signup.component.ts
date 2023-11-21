@@ -22,13 +22,12 @@ export class SignupComponent {
     email: ['', [Validators.required, Validators.email]],
     dept: ['', Validators.required],
     approved: [false, Validators.required],
-    employeeList: [<any>[],Validators.required],
-    managerList:[<any>[],Validators.required]
+    employeeList: [<string[]>[]],
+    managerList:[<string[]>[]]
   });
 
   submitted: boolean = true;
-  passwordHidden: any;
-  params = "manager";
+  params = "Manager";
   constructor(private activatedRoute:ActivatedRoute,private fb: FormBuilder, private userService: UserService, private router: Router) { }
   showPassword = true;
   ngOnInit(): void {
@@ -49,7 +48,7 @@ export class SignupComponent {
 
 
     console.log(this.registrationForm.value)
-    if(this.params === "manager"){
+    if(this.params === "Manager"){
       let {managerList,...manager} = this.registrationForm.value;
     this.userService.addManager(manager).subscribe(
       response => {
@@ -79,7 +78,7 @@ export class SignupComponent {
     return 'Please fill in all required fields.';
 
   }
-
+  passwordHidden = true;
   togglePasswordVisibility() {
     this.passwordHidden = !this.passwordHidden;
   }

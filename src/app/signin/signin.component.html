@@ -1,29 +1,39 @@
 <div class="container py-5 h-80">
     <div class="row d-flex align-items-center justify-content-center h-80">
-        <h1 class="row d-flex align-items-center justify-content-center">{{type}} Login to proceed</h1>
+        <!-- Image on the left -->
+        <div class="col-md-5 d-flex justify-content-center w-50">
+            <img src="https://emerline.com/images/blog/f590f73cea1878102bde5dccdee7f581-k21rurf6j0alpxrn5hlw.jpg" alt="Your Image" class="img-fluid">
+        </div>
+        <div class="row d-flex align-items-center justify-content-center h-80 w-50 mat-elevation-z8 py-3">
+            <h1 class="row d-flex align-items-center justify-content-center">{{type}} Login to proceed</h1>
 
-        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-            <form (ngSubmit)="onSubmit()">
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="email-1">Username</label>
-                    <input type="email" id="email-1" class="form-control form-control-lg" [(ngModel)]="user.username"
-                        name="email" required />
-                </div>
- 
-                <div class="form-outline mb-4">
-                    <label class="form-label" for="pass-1">Password</label>
-                    <input type="password" id="pass-1" class="form-control form-control-lg" [(ngModel)]="user.password"
-                        name="password" required />
-                </div>
-                <div class="d-flex justify-content-around align-items-center mb-4">
-                    <button type="submit" class="btn btn-primary btn-block" routerLink="/Signup">New User -
-                        Register</button>
-                </div>
-                <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
-                <button type="submit" class="btn btn-primary btn-lg btn-block"
-                    [disabled]="!user.username || !user.password">Sign in</button>
-            </form>
- 
+            <div class="d-flex flex-column justify-content-center align-items-center w-25">
+                <form (ngSubmit)="onSubmit()" class="example-form">
+                    <mat-form-field class="form-outline mb-4 w-100">
+                        <mat-label>Username</mat-label>
+                        <input matInput type="email" [(ngModel)]="user.username" name="email" required />
+                    </mat-form-field>
+                    <mat-form-field class="form-outline mb-4 w-100">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" [(ngModel)]="user.password" name="password" required />
+                        <button mat-icon-button matSuffix (click)="togglePasswordVisibility()">
+                            <mat-icon>{{ passwordHidden ? 'visibility' : 'visibility_off' }}</mat-icon>
+                        </button>
+                    </mat-form-field>
+                    <div *ngIf="type!='Super' && type!='Employee'" class="d-flex justify-content-around align-items-center mb-4">
+                        <button type="button" mat-raised-button class="btn btn-primary btn-block"
+                            routerLink="/Signup">New User - Register
+                        </button>
+                    </div>
+
+                    <div *ngIf="errorMessage" class="alert alert-danger">{{errorMessage}}</div>
+
+                    <button type="submit" class="btn btn-success btn-lg btn-block"
+                        [disabled]="!user.username || !user.password">
+                        Sign in
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>

@@ -25,6 +25,10 @@ export class UserService {
     return this.http.get<any>(`http://localhost:8080/employees/username/${username}`)
   }
 
+  deleteEmployee(employeeId:string){
+    return this.http.delete(`http://localhost:8080/employees/delete/${employeeId}`)
+  }
+
   getManager(username:string){
     return this.http.get<any>(`http://localhost:8080/managers/username/${username}`)
   }
@@ -33,12 +37,24 @@ export class UserService {
     return this.http.get<any>(`http://localhost:8080/hrAdminstrators/username/${username}`)
   }
 
+  addEmployeeToManager(managerId:string,employeeId:string){
+    return this.http.put(`http://localhost:8080/managers/${managerId}`,employeeId);
+  }
+
   getSuper(username:string){
     return this.http.get<any>(`http://localhost:8080/super/username/${username}`)
   }
  
   employeeLogin(user: any) {
     return this.http.post<any>('http://localhost:8080/employees/login', user);
+  }
+
+  updateManager(payload:any,managerId:string){
+    return this.http.put(`http://localhost:8080/managers/edit/${managerId}`,payload);
+  }
+
+  updateAdmin(payload:any,adminId:string){
+    return this.http.put(`http://localhost:8080/managers/edit/${adminId}`,payload);
   }
 
   managerLogin(user:any){
@@ -61,6 +77,14 @@ export class UserService {
 
   getJobsByManagerId(managerId:string){
     return this.http.get<any[]>(`http://localhost:8080/jobs/${managerId}`);
+  }
+
+  fetchAllEmployees(){
+    return this.http.get<any[]>('http://localhost:8080/employees');
+  }
+
+  fetchAllManagers(){
+    return this.http.get<any[]>('http://localhost:8080/managers')
   }
 
   fetchAllJobs(){

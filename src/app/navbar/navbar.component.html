@@ -28,7 +28,7 @@
       <div  #collapse="ngbCollapse" class="ms-3 text-secondary" [(ngbCollapse)]="isCollapsedSignup">
         <a [routerLink]="['Signin','Employee']" ngbDropdownItem>Employee</a>
         <a [routerLink]="['Signin','Manager']" ngbDropdownItem>Manager</a>
-        <a [routerLink]="['Signin','Admin']" ngbDropdownItem>Manager</a>
+        <a [routerLink]="['Signin','Admin']" ngbDropdownItem>HR Admin</a>
         <a [routerLink]="['Signin','Super']" ngbDropdownItem>Super Admin</a>
       </div>
     </div>
@@ -37,6 +37,11 @@
     <a  type="button" *ngIf='user!=null && role==="employee"' class="btn btn-outline-none ms-3" routerLink="/Employee/Profile">Profile</a>
     <a  type="button" *ngIf='user!=null && role==="employee" && user.onboarded === false' class="btn btn-outline-none ms-3" routerLink="/Employee/Onboarding">Onboarding</a>
     <a  type="button" *ngIf='user!=null && role==="manager"' class="btn btn-outline-none ms-3" routerLink="/Manager/CreateJob">Jobs</a>
+    <a  type="button" *ngIf='user!=null && role==="manager"' class="btn btn-outline-none ms-3" routerLink="/Manager/Employees">Employees</a>
+    <a  type="button" *ngIf='user!=null && role==="manager"' class="btn btn-outline-none ms-3" routerLink="/Manager/Profile">Profile</a>
+    <a  type="button" *ngIf='user!=null && role==="admin"' class="btn btn-outline-none ms-3" routerLink="/Admin/Profile">Profile</a>
+    <a  type="button" *ngIf='user!=null && role==="admin"' class="btn btn-outline-none ms-3" routerLink="/Admin/Employees">Employees</a>
+
     <a type="button" routerLink="/" class=" btn btn-outline-none" *ngIf="user!=null " (click)="logout()">Logout</a>
     </div>
   </div>

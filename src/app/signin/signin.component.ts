@@ -72,21 +72,17 @@ export class SigninComponent {
       );
     }
     if (this.type === "Super") {
-      this.userService.superLogin(this.user).subscribe(
-        data => {
-          console.log('Login successful', data);
-          this.userService.getSuper(data['message']).subscribe(userData=>{
-            this.userService.setSessionStorage(userData,"super");
-          })
-          this.errorMessage = '';
-          this.router.navigate(['/']);
-        },
-        error => {
-          console.log('Error', error);
-          this.errorMessage = 'Invalid username or password';
+      if(this.user.username === "SuperAdmin")
+      {
+        if(this.user.password === "Admin123&"){
+          this.userService.setSessionStorage(this.user,"super");
         }
-      );
+      }
     }
 
+  }
+  passwordHidden: any;
+  togglePasswordVisibility() {
+    this.passwordHidden = !this.passwordHidden;
   }
 }

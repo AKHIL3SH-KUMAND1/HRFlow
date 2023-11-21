@@ -1,1 +1,24 @@
-<p>view-employees works!</p>
+<div class="container">
+    <p class="display-4 my-3">Employee List</p>
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">EmployeeId</th>
+        <th scope="col">Employee Name</th>
+        <th scope="col">Onboarded</th>
+        <th scope="col">Attendance List</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let employee of employeeList;index as i">
+        <th scope="row">{{i+1}}</th>
+        <td>{{employee.userId}}</td>
+        <td>{{employee.firstName}} {{employee.lastName}}</td>
+        <td>{{employee.onboarded?"Yes":"No"}}</td>
+        <td><button class="btn btn-sm btn-outline-dark" (click)="viewAttendance(employee)">Attendance</button></td>
+        <td *ngIf="handler=='Admin'"><button class="btn btn-danger btn-sm" (click)="remove(employee)">Remove</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

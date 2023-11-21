@@ -55,12 +55,12 @@
                       <tr *ngFor="let applicant of job.applicants;index as j">
                         <th scope="row">{{j+1}}</th>
                         <td>{{applicant.applicantId}}</td>
-                        <td>{{applicant.firstName}} + {{applicant.lastName}}</td>
+                        <td>{{applicant.firstName}}  {{applicant.lastName}}</td>
                         <td>{{applicant.email}}</td>
                         <td><span *ngFor="let skill of applicant.skills">{{skill}} </span></td>
-                        <td><span *ngFor="let certificate of applicant.Certifications">{{certificate}} </span></td>
+                        <td><span *ngFor="let certificate of applicant.certifications">{{certificate}} </span></td>
                         <td>{{applicant.careerObjective}}</td>
-                        <td><button class="btn btn-success" (click)="approve(applicant.applicantId)">Approve</button></td>
+                        <td><button class="btn btn-success" (click)="approve(applicant,job.jobId)">Approve</button></td>
                       </tr>
                     </tbody>
                   </table>
